@@ -1,9 +1,42 @@
-# Suprise
+# Visual Novel Editor for Yandex Games
 
-Test project for AI coding with Qwen.
+Приложение для создания визуальных новелл под Яндекс.Игры с удобным GUI.
 
-## Goal
-Create a simple demo project to test GitHub integration.
+## Архитектура
 
-## Stack
-- Python (или JS — выбери сам)
+- **Python + PySide6 (Qt)** — быстрый GUI под Windows
+- **JSON** — хранение сцен (конвертируется в web для Яндекс Игр)
+- **Canvas** — редактирование сцен
+
+## Структура проекта
+
+```
+/workspace/
+├── src/
+│   ├── core/           # Ядро: модели, логика, JSON сериализация
+│   ├── gui/            # Основные окна и диалоги
+│   └── widgets/        # Кастомные виджеты (canvas, панели)
+├── data/               # JSON файлы проектов
+├── assets/             # Спрайты, фоны, музыка
+├── main.py             # Точка входа
+└── requirements.txt    # Зависимости
+```
+
+## Установка
+
+```bash
+pip install -r requirements.txt
+```
+
+## Запуск
+
+```bash
+python main.py
+```
+
+## Функционал
+
+- ✅ Создание и редактирование сцен
+- ✅ Управление спрайтами (масштабирование, перемещение)
+- ✅ Навигация по сценам стрелочками
+- ✅ Экспорт в JSON для Яндекс Игр
