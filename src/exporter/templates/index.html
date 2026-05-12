@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Novel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui-layer">
+            <div id="dialogue-box" class="hidden">
+                <div id="character-name"></div>
+                <div id="dialogue-text"></div>
+            </div>
+            <div id="choices-container" class="hidden"></div>
+            <div id="click-overlay"></div>
+        </div>
+        <audio id="bgm-player" loop></audio>
+        <audio id="sfx-player"></audio>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
