@@ -3,12 +3,12 @@ Main window of the Visual Novel Editor
 """
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-    QToolBar, QStatusBar, QMenuBar, QMenu, QAction,
+    QToolBar, QStatusBar, QMenuBar, QMenu,
     QSplitter, QGroupBox, QLabel, QPushButton, QFileDialog,
     QListWidget, QListWidgetItem, QFormLayout, QLineEdit, 
     QDoubleSpinBox, QCheckBox, QMessageBox
 )
-from PySide6.QtGui import QIcon, QKeySequence
+from PySide6.QtGui import QIcon, QKeySequence, QAction
 from PySide6.QtCore import Qt, Signal
 
 from src.core.models import Project, Scene, Sprite, Dialogue
@@ -386,12 +386,20 @@ class MainWindow(QMainWindow):
         current_row = self.scenes_list.currentRow()
         if current_row > 0:
             self.scenes_list.setCurrentRow(current_row - 1)
+            # Реально загружаем сцену после переключения
+            item = self.scenes_list.item(current_row - 1)
+            if item:
+                self.on_scene_selected(item)
     
     def next_scene(self):
         """Переход к следующей сцене"""
         current_row = self.scenes_list.currentRow()
         if current_row < self.scenes_list.count() - 1:
             self.scenes_list.setCurrentRow(current_row + 1)
+            # Реально загружаем сцену после переключения
+            item = self.scenes_list.item(current_row + 1)
+            if item:
+                self.on_scene_selected(item)
     
     # Методы работы со спрайтами
     def add_sprite(self):
@@ -404,6 +412,8 @@ class MainWindow(QMainWindow):
             self, "Выбрать спрайт", "", "Images (*.png *.jpg *.jpeg)"
         )
         if filepath:
+            # TODO: Использовать ProjectIO.add_asset() для копирования в assets/
+            # Сейчас используется абсолютный путь для тестирования GUI
             sprite_id = f"sprite_{len(self.current_scene.sprites) + 1}"
             sprite = Sprite(id=sprite_id, image_path=filepath, x=100, y=100)
             self.canvas.add_sprite(sprite)

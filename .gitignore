@@ -1,5 +1,5 @@
 ```
-# Compiled Python files
+# Compiled and build artifacts
 *.pyc
 __pycache__/
 
@@ -7,32 +7,34 @@ __pycache__/
 .venv/
 venv/
 node_modules/
+dist/
+build/
+target/
 
 # Logs and temp files
 *.log
 *.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
 
 # Editors
 .vscode/
 .idea/
 
-# Coverage reports
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Coverage
 .coverage
 coverage/
 htmlcov/
 
-# Distribution artifacts
-dist/
-build/
-target/
-
-# Environment files
-.env
-.env.local
-*.env.*
-
-# MyPy cache
+# Python cache
 .mypy_cache/
-# Pytest cache
 .pytest_cache/
 ```
